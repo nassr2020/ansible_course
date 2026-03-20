@@ -1,0 +1,20 @@
+- name: create user
+  tags: always
+  ansible.builtin.user:
+    name: simone2
+    groups: root
+
+- name: add sudoers file for simone2
+  tags: always
+  ansible.builtin.copy:
+    src: sudoer_simone2
+    dest: /etc/sudoers.d/simone2
+    owner: root
+    group: root
+    mode: 0440
+
+- name: add ssh key for simone2 user
+  tags: always
+  ansible.builtin.authorized_key:
+    user: simone2
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtsQo3nZgqp3VWA5330oQ6WGv8I8MMLaF8x0vmM4axGMqm1oZmAD0cQFKL/wcIyAMhtm54lcwbZQJWA5q2pnEbulxiPN1/7+pQInjAQFvcL/7Tcv4BnhfjI2Y48zK8hSZuHL5aqY9kw5ZpQTo6dZ6JBZKMyUe4ZwI/7hBX1j0R/vQHy/z2v5Hmj533v8qD9riEmiYLJ4qdsO9/TIrTwNWb/MHZGLReMUzSkNeITCBUMLKc1aQlnWxnhZPYQ1hk6MONbJiTrJznEPAwd+wp2e21eKbiJ7YFTHjBl5zSr53PbiaPC6uEniMi27Pud3ew/J1xXL5Q+IXkBs3rhzxUdV6+8q7k4hH4j6Z0bKrG0m3mBA2tRO4Kz/gNb0aEUNfpeFKzAZ99ZMVwH62b3O0jsvwDrXVN4MO0nweL2OjKVChTrIbMthFY+smX5dOieIBLwnndIQdHXWgm2PXeXoaE3YY8772zQwXlMhJyMGoEqEkYklNNM/XTtHXV1sz+UAvPxpU= root@ubuntu-ws"
